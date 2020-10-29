@@ -34,5 +34,47 @@ namespace MoodAnalyserTests
             //Assert
             Assert.AreEqual("HAPPY", mood);
         }
+
+        /// <summary>
+        /// Test Method for SAD Message constructor
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenSadMessageConstructor_ShouldReturnSAD()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("I am in SAD Mood");
+            //Assert
+            Assert.AreEqual("SAD", mood);
+        }
+
+        /// <summary>
+        /// Test Method for HAPPY Message constructor
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenAnyMessageConstructor_ShouldReturnHAPPY()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("I am in ANY Mood");
+            //Assert
+            Assert.AreEqual("HAPPY", mood);
+        }
+
+        /// <summary>
+        /// Test Method to Handle Null Exception
+        /// </summary>
+        [TestMethod]
+        public void GivenNullMessage_ShouldReturnHappy()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("NULL");
+            //Assert
+            Assert.AreEqual("HAPPY", mood);
+        }
     }
 }

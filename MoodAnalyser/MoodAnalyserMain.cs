@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace MoodAnalyser
 {
     public class MoodAnalyserMain
     {
-        private string message;
+        readonly string message;
 
         /// <summary>
         /// Refactor the code to take the mood message in constructor
@@ -27,16 +28,23 @@ namespace MoodAnalyser
         /// <returns></returns>
         public string AnalyseMood(string message)
         {
-            ///TC 1.1 Given "I am in Sad Mood" message should return SAD
-            if (this.message.Contains("I am in SAD Mood"))
+            try
             {
-                return "SAD";
+                ///TC 1.1 Given "I am in Sad Mood" message should return SAD
+                if (message.Contains("I am in SAD Mood"))
+                {
+                    return "SAD";
+                }
+                ///TC 1.2 Check AnalyseMood method for SAD or else return HAPPY
+                else
+                {
+                    return "HAPPY";
+                }
             }
-            ///TC 1.2 Check AnalyseMood method for SAD or else return HAPPY
-            else
+            catch (MoodAnalyserException)
             {
-                return "HAPPY";
-            }
+                throw new MoodAnalyserException("HAPPY");
+            }   
         }
         public string AnalyseMood()
         {
