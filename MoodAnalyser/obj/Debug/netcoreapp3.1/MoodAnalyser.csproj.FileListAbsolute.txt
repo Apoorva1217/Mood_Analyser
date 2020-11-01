@@ -1,0 +1,12 @@
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.exe
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.deps.json
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.runtimeconfig.json
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.runtimeconfig.dev.json
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.dll
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\bin\Debug\netcoreapp3.1\MoodAnalyser.pdb
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.AssemblyInfo.cs
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.dll
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.pdb
+C:\Users\HP\source\repos\MoodAnalyser\MoodAnalyser\obj\Debug\netcoreapp3.1\MoodAnalyser.genruntimeconfig.cache
