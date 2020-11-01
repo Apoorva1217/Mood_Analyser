@@ -8,10 +8,10 @@ namespace MoodAnalyserTests
     public class UnitTest1
     {
         /// <summary>
-        /// Test Method for SAD Mood
+        /// Test Case 1.1 Given "I am in Sad Mood" message should return SAD
         /// </summary>
         [TestMethod]
-        public void GivenSadMood_ShouldReturnSAD()
+        public void GivenMood_WhenSadMessage_ShouldReturnSAD()
         {
             //Arrange
             MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain("I am in SAD Mood");
@@ -22,10 +22,10 @@ namespace MoodAnalyserTests
         }
 
         /// <summary>
-        /// Test Method for HAPPY Mood
+        /// Test Case 1.2 Given "I am in Any Mood" message should return HAPPY
         /// </summary>
         [TestMethod]
-        public void GivenAnyMood_ShouldReturnHAPPY()
+        public void GivenMood_WhenAnyMessage_ShouldReturnHAPPY()
         {
             //Arrange
             MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain("I am in ANY Mood");
@@ -33,6 +33,240 @@ namespace MoodAnalyserTests
             string mood = moodAnalyserMain.AnalyseMood();
             //Assert
             Assert.AreEqual("HAPPY", mood);
+        }
+
+        /// <summary>
+        /// Repeat Test Case 1.1 Given "I am in Sad Mood" message in constructor should return SAD
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenSadMessageWithConstructor_ShouldReturnSAD()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("I am in SAD Mood");
+            //Assert
+            Assert.AreEqual("SAD", mood);
+        }
+
+        /// <summary>
+        /// Repeat Test Case 1.2 Given "I am in Any Mood" message in constructor should return HAPPY
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenAnyMessageWithConstructor_ShouldReturnHAPPY()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("I am in ANY Mood");
+            //Assert
+            Assert.AreEqual("HAPPY", mood);
+        }
+
+        /// <summary>
+        /// Test Case 2.1 Given NULL Mood should return HAPPY
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenNullMessage_ShouldReturnHappy()
+        {
+            //Arrange
+            MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+            //Act
+            string mood = moodAnalyserMain.AnalyseMood("NULL");
+            //Assert
+            Assert.AreEqual("HAPPY", mood);
+        }
+
+        /// <summary>
+        /// Test Case 3.1 Given NULL Mood should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenNullMessage_ShouldThrowException()
+        {
+            try
+            {
+                MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+                string mood = moodAnalyserMain.AnalyseMood("NULL");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual("Mood should not be null", e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 3.2 Given Empty Mood should throw MoodAnalyserException indicating Empty Mood
+        /// </summary>
+        [TestMethod]
+        public void GivenMood_WhenEmptyMessage_ShouldThrowException()
+        {
+            try
+            {
+                MoodAnalyserMain moodAnalyserMain = new MoodAnalyserMain();
+                string mood = moodAnalyserMain.AnalyseMood(" ");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 4.1 Given MoodAnalyserMain class should return MoodAnalyserMain object
+        /// </summary>
+        [TestMethod]
+        public void GivenMoodAnalyserClassName_ShouldReturnMoodAnalyseObject()
+        {
+            object expected = new MoodAnalyserMain("NULL");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyserMain", "MoodAnalyserMain");
+            expected.Equals(obj);
+        }
+
+        /// <summary>
+        /// Test Case 4.2 Given Improper class name should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenImproperClassName_ShouldThrowMoodAnalyserException()
+        {
+            string expected = "Class not Found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyser.sampleClass", "MoodAnalyserMain");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
+        // <summary>
+        /// Test Case 4.3 Given class when construcor not proper should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenClass_WhenConstructorNotProper_ShouldThrowMoodAnalyserException()
+        {
+            string expected = "Constructor is not Found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyserMain", "sampleClass");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 5.1 Given MoodAnalyser when proper message pass to parameterized constructor then return Mood Analyser object
+        /// </summary>
+        [TestMethod]
+        public void GivenMoodAnalyser_WhenProper_ReturnMoodAnalyseMainObject()
+        {
+            object expected = new MoodAnalyserMain("HAPPY");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser.MoodAnalyserMain", "MoodAnalyserMain", "HAPPY");
+            expected.Equals(obj);
+        }
+
+        // <summary>
+        /// Test Case 5.2 Given Improper class name should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenImproperClassName_ShouldThrowMoodAnalyserException_UsingParameterizedConstructor()
+        {
+            string expected = "Class not Found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser.sampleClass", "MoodAnalyserMain", "HAPPY");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
+        // <summary>
+        /// Test Case 5.3 Given Improper construcort name should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenImproperConstructorName_ShouldThrowMoodAnalyserException_UsingParameterizedConstructor()
+        {
+            string expected = "Constructor is not Found";
+            try
+            {
+                object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyser.MoodAnalyserMain", "sampleClass", "HAPPY");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 6.1 Given Happy message using Reflection when proper should return HAPPY Mood
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessageUsingReflection_WhenProper_ShouldReturnHappy()
+        {
+            string message = MoodAnalyserFactory.InvokeMethod("MoodAnalyser.MoodAnalyserMain", "GetMood", "HAPPY");
+            Assert.AreEqual("HAPPY", message);
+        }
+
+        /// <summary>
+        /// Test Case 6.2 Given Happy message when Improper method should throw MoodAnalyserException
+        /// </summary>
+        [TestMethod]
+        public void GivenHappyMessageUsingReflectionWhenImproperMethod_shouldThrowMoodAnayserException()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.InvokeMethod("MoodAnalyser.MoodAnalyserMain", "getMethod", "HAPPY");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.NO_A_VALID_INPUT, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 7.1 set Happy message with Reflector should return HAPPY
+        /// </summary>
+        [TestMethod]
+        public void ChangeMoodDynamically_WhenHappyMessage_ShouldReturnHappy()
+        {
+            dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.MoodAnalyserMain", "HAPPY");
+            Assert.AreEqual("HAPPY", result);
+        }
+
+        /// <summary>
+        /// Test Case 7.2 set field when improper should throw Exception 
+        /// </summary>
+        [TestMethod]
+        public void ChangeMoodDynamically_WhenImproperMessage_ShouldThrowException()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.getMood", "HAPPY");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.NO_A_VALID_INPUT, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Test Case 7.3 setting Null message with Reflector should throw Exception
+        /// </summary>
+        [TestMethod]
+        public void ChangeMoodDynamically_WhenNull_ShouldThrowException()
+        {
+            try
+            {
+                dynamic result = MoodAnalyserFactory.ChangeTheMood("MoodAnalyser.MoodAnalyserMain", null);
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.ENTERD_NULL, e.Message);
+            }
         }
     }
 }
