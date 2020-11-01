@@ -2,7 +2,7 @@ read a
 git branch $a
 git checkout $a
 git add .
-git commit -m "[Apoorva] Add . Given a message, Ability to analyse and respond Happy or Sad Mood"
+git commit -m "[Apoorva] Add . Use Reflection to change mood dynamically"
 git push origin $a
 git checkout master
 git merge $a
